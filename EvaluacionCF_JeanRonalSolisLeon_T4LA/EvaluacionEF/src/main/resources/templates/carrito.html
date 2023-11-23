@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Carrito de Reservas</title>
+	<!-- Enlace a Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<div class="container">
+		<h2>Carrito de Reservas</h2>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Cliente_Id</th>
+					<th>Habitacion_Id</th>
+					<th>Fecha_Inicio</th>
+					<th>Fecha_Fin</th>
+					<th>Total</th>
+					<th>Estado</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Bucle para productos en el carrito -->
+				<tr th:each="reservas : ${reservasEnCarrito}">
+					<td th:text="${reservas.id}"></td>
+					<td th:text="${reservas.cliente_id}"></td>
+					<td th:text="${reservas.habitacion_id}"></td>
+					<td th:text="${reservas.fecha_inicio}"></td>
+					<td th:text="${reservas.fecha_fin}"></td>
+					<td th:text="${reservas.total}"></td>
+					<td th:text="${reservas.estado}"></td>
+				</tr>
+			</tbody>
+			
+			<td>
+						<form th:action="@{/addtochart}" method="post">
+							<input type="hidden" name="habitacionId" th:value="${habitacion.id}" />
+							<button type="submit" class="btn btn-primary">Confirmar Reserva</button>
+						</form>
+					</td>
+		</table>
+
+		
+	</div>
+
+	<!-- Enlace a Bootstrap JS y jQuery (si es necesario) -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
